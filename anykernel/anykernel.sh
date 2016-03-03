@@ -180,15 +180,15 @@ dump_boot;
 # adapt the idea of blechdose and modified by hurtsky for anykernel script usage
 # rest in peace mpdecision
 #
-if [ -e /system/lib/hw/power.msm8226.so ]; then
-	[ -e /system/lib/hw/power.msm8226.so.bak ] || cp /system/lib/hw/power.msm8226.so /system/lib/hw/power.msm8226.so.bak;
-	[ -e /system/lib/hw/power.msm8226.so ] && rm -f /system/lib/hw/power.msm8226.so;
-fi;
-
-if [ -e /system/bin/mpdecision ]; then
-	[ -e /system/bin/mpdecisionbak ] || cp /system/bin/mpdecision /system/bin/mpdecisionbak;
-	[ -e /system/bin/mpdecision ] && rm -f /system/bin/mpdecision;
-fi;
+#if [ -e /system/lib/hw/power.msm8226.so ]; then
+##	[ -e /system/lib/hw/power.msm8226.so.bak ] || cp /system/lib/hw/power.msm8226.so /system/lib/hw/power.msm8226.so.bak;
+#	[ -e /system/lib/hw/power.msm8226.so ] && rm -f /system/lib/hw/power.msm8226.so;
+#fi;
+#
+#if [ -e /system/bin/mpdecision ]; then
+#	[ -e /system/bin/mpdecisionbak ] || cp /system/bin/mpdecision /system/bin/mpdecisionbak;
+#	[ -e /system/bin/mpdecision ] && rm -f /system/bin/mpdecision;
+#fi;
 
 # kernel scripts
 #append_file init.rc "thuglife" init.optimus.rc;
