@@ -1,7 +1,8 @@
 VERSION = 3
 PATCHLEVEL = 4
 SUBLEVEL = 42
-EXTRAVERSION =  -thuglife™-falcon
+THUGVERSION = v1.0
+EXTRAVERSION =  -thuglife™-falcon-$(THUGVERSION)
 NAME = Saber-toothed Squirrel
 
 # *DOCUMENTATION*
