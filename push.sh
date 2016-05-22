@@ -1,5 +1,6 @@
 #!/bin/bash
-git fetch cm cm-13.0
-git merge cm/cm-13.0
+dir=${PWD}
+cd ${THUGDIR}/falcon
 git push origin master
 git push orion HEAD:6.0.1
+cd ${dir}
