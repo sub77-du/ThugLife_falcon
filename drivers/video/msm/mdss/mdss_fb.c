@@ -45,6 +45,10 @@
 #include <linux/memory_alloc.h>
 #include <linux/kthread.h>
 
+#ifdef CONFIG_LLCON
+#include <video/llcon.h>
+#endif
+
 #include <mach/board.h>
 #include <mach/memory.h>
 #include <mach/iommu.h>
@@ -2680,6 +2684,15 @@ static int mdss_fb_ioctl(struct fb_info *info, unsigned int cmd,
 			return ret;
 		}
 	}
+
+#ifdef CONFIG_LLCON
+	if ( cmd != MSMFB_NOTIFY_UPDATE
+	  && cmd != MSMFB_OVERLAY_VSYNC_CTRL
+	  && cmd != MSMFB_METADATA_GET
+	  && cmd != MSMFB_DISPLAY_COMMIT ) {
+		llcon_exit();
+	}
+#endif
 
 	switch (cmd) {
 	case MSMFB_CURSOR:

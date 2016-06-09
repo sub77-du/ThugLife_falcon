@@ -43,6 +43,10 @@
 #include <linux/rculist.h>
 #include <linux/apanic_mmc.h>
 
+#ifdef CONFIG_LLCON
+#include <video/llcon.h>
+#endif
+
 #include <asm/uaccess.h>
 
 #include <mach/msm_rtb.h>
@@ -728,6 +732,10 @@ static void call_console_drivers(unsigned start, unsigned end)
 
 static void emit_log_char(char c)
 {
+#ifdef CONFIG_LLCON
+	llcon_emit_log_char(c);
+#endif
+
 	static int is_begin;
 	int start_apanic_threads;
 
