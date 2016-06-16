@@ -73,10 +73,13 @@
 	qcom,cont-splash-enabled;
 };
 
-&mdss_dsi0 {
-	vdd_disp-supply = <&pm8226_l28>;
-	vddio_disp-supply = <&vddio_disp_vreg>;
-	lcdbias-supply = <&tps65132>;
+&mdss_fb0 {
+        qcom,mdss-fb-splash-logo-enabled;
 };
 
+&mdss_dsi0 {
+        vdd_disp-supply = <&pm8226_l28>;
+        vddio_disp-supply = <&vddio_disp_vreg>;
+        lcdbias-supply = <&tps65132>;
+};
 
