@@ -19,7 +19,7 @@ CROSS_COMPILE_PATH=$(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8
 KERNEL_SOURCE_RELATIVE_PATH := ../../../../../../kernel
 
 DTS_NAMES ?= $(shell $(PERL) -e 'while (<>) {$$a = $$1 if /CONFIG_ARCH_((?:MSM|QSD|MPQ)[a-zA-Z0-9]+)=y/; $$r = $$1 if /CONFIG_MSM_SOC_REV_(?!NONE)(\w+)=y/; $$arch = $$arch.lc("$$a$$r ") if /CONFIG_ARCH_((?:MSM|QSD|MPQ)[a-zA-Z0-9]+)=y/} print $$arch;' $(KERNEL_CONFIG))
-KERNEL_USE_OF ?= $(shell $(PERL) -e '$$of = "n"; while (<>) { if (/CONFIG_USE_OF=y/) { $$of = "y"; break; } } print $$of;' kernel/arch/arm/configs/$(KERNEL_DEFCONFIG))
+KERNEL_USE_OF ?= $(shell $(PERL) -e '$$of = "n"; while (<>) { if (/CONFIG_USE_OF=y/) { $$of = "y"; break; } } print $$of;' kernel/motorola/thug/arch/arm/configs/$(KERNEL_DEFCONFIG))
 
 # Avoid auto-generating .dts files that match QC's pattern
 ifeq ($(TARGET_KERNEL_SELECT_OF_DT),true)
@@ -70,7 +70,7 @@ mpath=`dirname $$mdpath`; rm -rf $$mpath;\
 fi
 endef
 
-include kernel/defconfig.mk
+include kernel/motorola/thug/defconfig.mk
 
 define do-kernel-config
 	( cp $(3) $(2) && $(7) -C $(4) O=$(1) ARCH=$(5) CROSS_COMPILE=$(6) KBUILD_BUILD_USER=$(TARGET_KERNEL_BUILD_USER) KBUILD_BUILD_HOST=$(TARGET_KERNEL_BUILD_HOST) defoldconfig ) || ( rm -f $(2) && false )
@@ -105,6 +105,6 @@ kernelconfig: $(KERNEL_OUT) $(KERNEL_CONFIG)
 	     $(MAKE) -C kernel O=../$(KERNEL_OUT) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE_PATH)arm-eabi- KBUILD_BUILD_USER=$(TARGET_KERNEL_BUILD_USER) KBUILD_BUILD_HOST=$(TARGET_KERNEL_BUILD_HOST) menuconfig
 	env KCONFIG_NOTIMESTAMP=true \
 	     $(MAKE) -C kernel O=../$(KERNEL_OUT) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE_PATH)arm-eabi- KBUILD_BUILD_USER=$(TARGET_KERNEL_BUILD_USER) KBUILD_BUILD_HOST=$(TARGET_KERNEL_BUILD_HOST) savedefconfig
-	cp $(KERNEL_OUT)/defconfig kernel/arch/arm/configs/$(KERNEL_DEFCONFIG)
+	cp $(KERNEL_OUT)/defconfig kernel/motorola/thug/arch/arm/configs/$(KERNEL_DEFCONFIG)
 
 endif

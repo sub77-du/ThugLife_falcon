@@ -1,7 +1,7 @@
-DEFCONFIGSRC			:= kernel/arch/arm/configs
+DEFCONFIGSRC			:= kernel/motorola/thug/arch/arm/configs
 LJAPDEFCONFIGSRC		:= ${DEFCONFIGSRC}/ext_config
 PRODUCT_SPECIFIC_DEFCONFIGS	:= $(DEFCONFIGSRC)/$(KERNEL_DEFCONFIG)
-TARGET_DEFCONFIG		:= $(KERNEL_OUT)/mapphone_defconfig
+TARGET_DEFCONFIG		:= $(KERNEL_OUT)/.config
 KERNEL_DEBUG_DEFCONFIG          := $(LJAPDEFCONFIGSRC)/debug-$(subst _defconfig,,$(KERNEL_DEFCONFIG)).config
 
 # add debug config file for non-user build
@@ -21,7 +21,7 @@ endif
 
 define do-make-defconfig
 	$(hide) mkdir -p $(dir $(1))
-	( perl -le 'print "# This file was automatically generated from:\n#\t" . join("\n#\t", @ARGV) . "\n"' $(2) && cat $(2) ) > $(1) || ( rm -f $(1) && false )
+	( perl -le 'print "# This file was automatically generated from:\n#\t" . join("\n#\t", @ARGV) . "\n"' $(2) && cat $(2)falcon_defconfig ) > $(1) || ( rm -f $(1) && false )
 endef
 
 #
